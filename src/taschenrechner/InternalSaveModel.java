@@ -12,7 +12,7 @@ import java.text.ParsePosition;
  * @author cdepner
  */
 public class InternalSaveModel implements CalculatorModel {
-    private String operation, savedOperation;
+    private String operation = "0", savedOperation;
     private boolean operationTouched = false;
 
     /**
@@ -36,7 +36,7 @@ public class InternalSaveModel implements CalculatorModel {
 
         if (!operationTouched) {
             operationTouched = true;
-            if (isNumeric(operandString)) {
+            if (isNumeric(operandString) || "(".equals(operandString) || ")".equals(operandString)) {
                 operation = operandString;
             } else {
                 operation = calculate(operation.replace("=", "")) + "" + operandString;
@@ -122,6 +122,8 @@ public class InternalSaveModel implements CalculatorModel {
      * Reset operation
      */
     public void resetOperation() {
+        operation = "0";
         operationTouched = false;
+
     }
 }

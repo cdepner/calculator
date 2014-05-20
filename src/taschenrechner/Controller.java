@@ -59,9 +59,9 @@ class Controller implements ActionListener {
             groupLayoutView.setCalculationLabel(internalModel.setOperation(actionCommand.charAt(0)));
             internalModel.resetOperation();
         } else if ("C".equals(actionCommand)) {
-            groupLayoutView.setCalculationLabel(internalModel.setOperation('0'));
-            groupLayoutView.setResultLabel(internalModel.getResult());
             internalModel.resetOperation();
+            groupLayoutView.setResultLabel("0");
+            groupLayoutView.setCalculationLabel("0");
         } else if ("MR".equals(actionCommand)) {
             groupLayoutView.setCalculationLabel(internalModel.setOperation('M'));
         } else if ("MS".equals(actionCommand)) {
