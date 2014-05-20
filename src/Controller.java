@@ -30,7 +30,7 @@ class Controller implements ActionListener {
      * @param args User Defined arguments as an array
      */
     public static void main(String[] args) {
-        CalculatorView groupView = new GridBagView();
+        CalculatorView groupView = new GridBagLayoutView();
         CalculatorModel internalModel = new InternalSaveModel();
         new Controller(internalModel, groupView);
     }
