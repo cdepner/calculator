@@ -15,10 +15,15 @@ public class InternalSaveModel implements CalculatorModel {
     private String operation, savedOperation;
     private boolean operationTouched = false;
 
-
+    /**
+     * Set operation string
+     *
+     * @param operand Char with numbers or letters the create an operation
+     * @return String operation
+     */
     public String setOperation(char operand) {
         String operandString;
-        if (operand == 'π') {
+        if ("π".equals(operand + "")) {
             operandString = Math.PI + "";
         } else if (operand == 'E') {
             operandString = Math.E + "";
@@ -43,6 +48,12 @@ public class InternalSaveModel implements CalculatorModel {
         return operation;
     }
 
+    /**
+     * Test string for a number
+     *
+     * @param str Check string to number
+     * @return boolean true|false
+     */
     public boolean isNumeric(String str)
     {
         NumberFormat formatter = NumberFormat.getInstance();
@@ -51,20 +62,40 @@ public class InternalSaveModel implements CalculatorModel {
         return str.length() == pos.getIndex();
     }
 
+    /**
+     * Save an operation in an separate variable
+     */
     public void setSavedOperation() {
         savedOperation = operation.replace("=", "");
     }
 
+    /**
+     * Get the result of the saved operation
+     *
+     * @return String result of the saved operation
+     */
     public String getSavedOperation() {
 
         return calculate(savedOperation);
     }
 
+    /**
+     * Get the operation result
+     *
+     * @return String result of the operation
+     */
     public String getResult() {
 
         return calculate(operation);
     }
 
+    /**
+     * Calculate the operation string
+     *
+     * @param localOperation String to calculate
+     *
+     * @return String result of operation
+     */
     public String calculate(String localOperation) {
         String result;
         ScriptEngineManager mgr = new ScriptEngineManager();
@@ -87,6 +118,9 @@ public class InternalSaveModel implements CalculatorModel {
         return result;
     }
 
+    /**
+     * Reset operation
+     */
     public void resetOperation() {
         operationTouched = false;
     }

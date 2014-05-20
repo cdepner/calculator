@@ -1,6 +1,6 @@
 package taschenrechner;
 
-import javax.swing.JButton;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,44 +9,65 @@ import java.awt.event.ActionListener;
  */
 class Controller implements ActionListener {
 
-    private final CalculatorView groupView;
+    private final CalculatorView groupLayoutView;
     private final CalculatorModel internalModel;
 
+    /**
+     * Object Entry Point
+     *
+     * @param model Model Class
+     * @param view  View Class
+     */
+    private Controller(CalculatorModel model, CalculatorView view) {
+        internalModel = model;
+        groupLayoutView = view;
+        groupLayoutView.initComponents();
+        groupLayoutView.setVisibility(true);
+        actionListener();
+    }
+
+    /**
+     * Entry Point
+     *
+     * @param args User Defined arguments as an array
+     */
     public static void main(String[] args) {
         CalculatorView groupView = new GroupLayoutView();
         CalculatorModel internalModel = new InternalSaveModel();
         new Controller(internalModel, groupView);
     }
 
-    private Controller(CalculatorModel model, CalculatorView view) {
-        internalModel = model;
-        groupView = view;
-        actionListener();
-    }
-
+    /**
+     * ActionListener to catch all View Button actions
+     */
     private void actionListener() {
-        for (JButton button : groupView.getComponentsForController()) {
+        for (JButton button : groupLayoutView.getComponentsForController()) {
             button.addActionListener(this);
         }
     }
 
+    /**
+     * Function replace actionPerformed to catch all Button actions
+     *
+     * @param actionEvent ActionEvent Class
+     */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         String actionCommand = actionEvent.getActionCommand();
         if ("=".equals(actionCommand)) {
-            groupView.setResultLabel(internalModel.getResult());
-            groupView.setCalculationLabel(internalModel.setOperation(actionCommand.charAt(0)));
+            groupLayoutView.setResultLabel(internalModel.getResult());
+            groupLayoutView.setCalculationLabel(internalModel.setOperation(actionCommand.charAt(0)));
             internalModel.resetOperation();
         } else if ("C".equals(actionCommand)) {
-            groupView.setCalculationLabel(internalModel.setOperation('0'));
-            groupView.setResultLabel(internalModel.getResult());
+            groupLayoutView.setCalculationLabel(internalModel.setOperation('0'));
+            groupLayoutView.setResultLabel(internalModel.getResult());
             internalModel.resetOperation();
         } else if ("MR".equals(actionCommand)) {
-            groupView.setCalculationLabel(internalModel.setOperation('M'));
+            groupLayoutView.setCalculationLabel(internalModel.setOperation('M'));
         } else if ("MS".equals(actionCommand)) {
             internalModel.setSavedOperation();
         }else {
-            groupView.setCalculationLabel(internalModel.setOperation(actionCommand.charAt(0)));
+            groupLayoutView.setCalculationLabel(internalModel.setOperation(actionCommand.charAt(0)));
         }
     }
 }

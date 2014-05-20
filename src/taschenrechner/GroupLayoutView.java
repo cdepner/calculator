@@ -7,24 +7,26 @@ import javax.swing.*;
  */
 public class GroupLayoutView implements CalculatorView {
 
-    private final JFrame frame;
+    private JFrame frame;
     private JButton button0, button1, button2, button3, button4, button5, button6, button7, button8, button9;
     private JButton buttonAddition, buttonSubtraction, buttonMultiplication, buttonDivision, buttonE;
     private JButton buttonBracketsClose, buttonBracketsOpen, buttonComma, buttonPi, buttonEnter;
     private JButton buttonClear, buttonMemoryRecall, buttonMemorySave;
     private JLabel calculationLabel, resultLabel;
 
-    public GroupLayoutView() {
-        frame = new JFrame();
-        initComponents();
-        frame.setVisible(true);
+    /**
+     * Entry point view
+     */
+    public void setVisibility(boolean status) {
+        frame.setVisible(status);
     }
 
-
-    private void initComponents() {
-
+    /**
+     * View initialisation
+     */
+    public void initComponents() {
+        frame = new JFrame();
         JPanel numbersPanel, Result, calculationPanel, calculatorPanel, controlPanel;
-
         Result = new javax.swing.JPanel();
         resultLabel = new javax.swing.JLabel();
         calculationLabel = new javax.swing.JLabel();
@@ -309,6 +311,11 @@ public class GroupLayoutView implements CalculatorView {
         frame.pack();
     }
 
+    /**
+     * Return of all Buttons in the View
+     *
+     * @return JButton
+     */
     public JButton[] getComponentsForController() {
         return new JButton[]{
                 button0, button1, button2, button3, button4, button5, button6, button7, button8, button9,
@@ -318,10 +325,20 @@ public class GroupLayoutView implements CalculatorView {
         };
     }
 
+    /**
+     * Set the Result-Label
+     *
+     * @param result String for Result-Label
+     */
     public void setResultLabel(String result) {
         resultLabel.setText(result);
     }
 
+    /**
+     * Set the Calculation-Label
+     *
+     * @param calculation String for Calculation-Label
+     */
     public void setCalculationLabel(String calculation) {
         calculationLabel.setText(calculation);
     }
