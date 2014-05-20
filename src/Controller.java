@@ -1,5 +1,3 @@
-package taschenrechner;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -66,7 +64,7 @@ class Controller implements ActionListener {
             groupLayoutView.setCalculationLabel(internalModel.setOperation('M'));
         } else if ("MS".equals(actionCommand)) {
             internalModel.setSavedOperation();
-        }else {
+        } else {
             groupLayoutView.setCalculationLabel(internalModel.setOperation(actionCommand.charAt(0)));
         }
     }

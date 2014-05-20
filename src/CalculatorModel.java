@@ -1,5 +1,3 @@
-package taschenrechner;
-
 /**
  * @author cdepner
  */

@@ -1,5 +1,3 @@
-package taschenrechner;
-
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
@@ -54,8 +52,7 @@ public class InternalSaveModel implements CalculatorModel {
      * @param str Check string to number
      * @return boolean true|false
      */
-    public boolean isNumeric(String str)
-    {
+    public boolean isNumeric(String str) {
         NumberFormat formatter = NumberFormat.getInstance();
         ParsePosition pos = new ParsePosition(0);
         formatter.parse(str, pos);
@@ -93,7 +90,6 @@ public class InternalSaveModel implements CalculatorModel {
      * Calculate the operation string
      *
      * @param localOperation String to calculate
-     *
      * @return String result of operation
      */
     public String calculate(String localOperation) {
